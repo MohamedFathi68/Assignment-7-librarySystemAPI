@@ -1,6 +1,7 @@
 import { Router } from "express";
+import { createBook } from "./book.controller.js";
 const bookRouter = Router();
 
-bookRouter.get("/book", userRouter);
+bookRouter.post("/book" , createBook);
 
 export default bookRouter;
