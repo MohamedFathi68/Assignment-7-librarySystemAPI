@@ -6,7 +6,7 @@ const createAuthor = async (req, res) => {
 };
 
 const getAllAuthor = async (req, res) => {
-  let search = (req.query.search).toString();
+  let search = String(req.query.search);
   let page = req.query.page*1 || 1;
   let limit = 5;
   let skip = (page - 1)*limit;
