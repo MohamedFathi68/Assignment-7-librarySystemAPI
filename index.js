@@ -6,7 +6,7 @@ import { connection } from "./src/database/database.connection.js";
 
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(json());
 app.use(cors());
