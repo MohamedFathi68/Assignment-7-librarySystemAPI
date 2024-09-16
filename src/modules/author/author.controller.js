@@ -10,6 +10,7 @@ const getAllAuthor = async (req, res) => {
   let page = req.query.page*1 || 1;
   let limit = 5;
   let skip = (page - 1)*limit;
+  if(req.query.search){
   let author = await authorModel.find({
     $or:[
       {name:{$regex:search, $options:'i'}},
@@ -17,7 +18,12 @@ const getAllAuthor = async (req, res) => {
     ]
   },{__v:false}).populate('books',"-__v").limit(limit).skip(skip);
   res.status(200).json({message:"success",currentPage: page , author});
-};
+}else{
+  let author = await authorModel.find().populate('books',"-__v").limit(limit).skip(skip);
+  res.status(200).json({message:"success",currentPage: page , author});
+  }
+  }
+  
 
 const getAuthorById = async (req, res)=>{
   let author = await authorModel.findById(req.params.id,{__v:false}).populate('books',"-__v").limit(limit).skip(skip);
